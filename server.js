@@ -10,9 +10,9 @@
  *     with a character.js file in the model
  *	2. In character.js, model out the character table, as detailed
  *		 in the schema.sql file located in the root of this project directory.
- *	3. Remove all references to the old orm file, 
+ *	3. Remove all references to the old orm file,
  *     and replace it with character.js
- *	4. Use Sequlize methods in place of the orm calls 
+ *	4. Use Sequlize methods in place of the orm calls
  *     to retrieve and insert data.
  *
  * -/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/ */
@@ -22,7 +22,8 @@
 // =============================================================
 var express 	= require('express');
 var bodyParser 	= require('body-parser');
-
+var character = require("./models")["Character"];
+Character.sync();
 
 
 
@@ -31,7 +32,7 @@ var bodyParser 	= require('body-parser');
 var app = express();
 var PORT = process.env.PORT || 8080;
 
-// Sets up the Express app to handle data parsing 
+// Sets up the Express app to handle data parsing
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.text());
@@ -50,7 +51,7 @@ require("./routes/html-routes.js")(app)
 
 
 
-// Starts the server to begin listening 
+// Starts the server to begin listening
 // =============================================================
 app.listen(PORT, function(){
 	console.log('App listening on PORT ' + PORT);
